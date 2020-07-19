@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body { padding: 40px; }
+#phoneType.mm-dropdown {
+  border: 1px solid #ddd;
+  width: 100%;
+  border-radius: 3px;
+}
+#phoneType.mm-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+#phoneType.mm-dropdown ul li,
+#phoneType.mm-dropdown div.textfirst {
+  padding: 0;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+  padding: 5px 15px;
+}
+#phoneType.mm-dropdown div.textfirst img.down {
+  float: right;
+  margin-top: 5px
+}
+
+#phoneType.mm-dropdown ul li:last-child {
+  border-bottom: 0;
+}
+
+#phoneType.mm-dropdown ul li {
+  display: none;
+  padding-left: 25px;
+}
+
+#phoneType.mm-dropdown ul li.main {
+  display: block;
+}
+
+#phoneType.mm-dropdown ul li img {
+  width: 20px;
+  height: 20px;
+}
+</style>
+</head>
+<body>
+  <div id="phoneType" class="mm-dropdown">
+    <div class="textfirst phoneType frmControl">Select Your Mobile Device<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" width="10" height="10" class="down" /></div>
+    <ul>
+      <li class="input-option" data-value="iPhone">
+        <img src="iPhone-icons.svg" alt="" width="20" height="20" /> iPhone</li>
+      <li class="input-option" data-value="Android">
+        <img src="iPhone-icons.svg" alt="" width="20" height="20" /> Android
+      </li>
+
+    </ul>
+    <input type="hidden" class="option" name="namesubmit" value="" />
+  </div>
+  <!-- End This -->
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script>
+  $(function() {
+  // Set
+  $('#iPhoneUser').hide();
+  $('#androidUser').hide();
+  var main = $('div.mm-dropdown .phoneType.frmControl')
+  var li = $('div.mm-dropdown > ul > li.input-option')
+  var inputoption = $("div.mm-dropdown .option")
+  var default_option = 'Select Your Mobile Device <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" width="10" height="10" class="down" />';
+
+  // Animation
+  main.click(function() {
+    main.html(default_option);
+    li.toggle('fast');
+  });
+
+  // Insert Data
+  li.click(function() {
+    // hide
+    li.toggle('fast');
+    var livalue = $(this).data('value');
+    var lihtml = $(this).html();
+    main.html(lihtml);
+    inputoption.val(livalue);
+    console.log(livalue);
+    if(livalue === 'iPhone'){
+            $('#iPhoneUser').show();
+        }
+        else if(livalue === 'Android'){
+            $('#iPhoneUser').hide();
+            $('#androidUser').show(); 
+        }
+        else{
+            $('#iPhoneUser').hide();
+            $('#androidUser').hide();
+        }
+  });
+});
+
+  </script>
+
+<div id="iPhoneUser">1111111 </div>
+<div id="androidUser">222222222222</div>
+
+</body>
+</html>
